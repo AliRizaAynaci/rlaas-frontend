@@ -1,0 +1,467 @@
+/* ========= Local tokens (scope = .wrapper) ========= */
+.wrapper{
+  /* design tokens */
+  --bg-0:#0f1117;
+  --bg-1:rgba(22,24,32,.65);   /* frosted */
+  --stroke:rgba(255,255,255,.06);
+  --text-0:#e2e8f0;
+  --text-1:#8a8f98;
+  --accent-0:#3a6cff;
+  --accent-1:#4e8dff;
+  --danger:#ff7575;
+  --glass-blur:8px;
+
+  /* layout */
+  display:flex;
+  gap:2rem;
+  padding:4rem 3rem;
+  min-height:100dvh;
+  background:var(--bg-0);
+  color:var(--text-0);
+  font-family:Inter,sans-serif;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  /* her zaman görünür kalsın */
+  position: sticky;
+  top: 2rem;
+
+  /* genişlik */
+  min-width: 180px;
+  max-width: 180px;
+  flex-shrink: 0;
+
+  /* listeleme */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  /* arka planı şeffaf bıraktık */
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* ---------- Metric Card ---------- */
+.metricBox {
+  position: relative;
+  padding: 1rem 1.25rem;
+
+  border-radius: 0.9rem;
+  background: var(--bg-1);
+  border: 1px solid var(--stroke);
+  overflow: hidden;
+
+  /* hafif gölge */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.metricBox::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+
+  /* gradient’i biraz daha belirgin yaptık */
+  background: linear-gradient(
+    90deg,
+    var(--accent-0) 0%,
+    var(--accent-1) 60%
+  );
+
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
+}
+
+.metricLabel{font-size:.75rem;color:var(--text-1);letter-spacing:.03em;}
+.metricValue{font-size:1.6rem;font-weight:600;margin-top:.25rem;}
+
+/* ---------- Main content ---------- */
+.content{flex:1;display:flex;flex-direction:column;gap:2rem;}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.4rem;          /* önce 1rem’di */
+  margin-bottom: 0.5rem;
+}
+.header h1 {
+  flex: 1;
+  font-size: 2.4rem;    /* önce 2.1rem’di */
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* ---------- Project title ---------- */
+.projectTitle {
+  flex: 1;
+  font-size: 2.6rem;   /* net büyüdü */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.dim { color: var(--text-1); }
+
+/* ---------- Metric Card ---------- */
+.metricBox {
+  position: relative;
+  padding: 1rem 1.25rem;
+  border-radius: 0.9rem;
+  background: var(--bg-1);
+  border: 1px solid var(--stroke);
+  display: flex;               /*  ➜   içerik ortalı */
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+.metricLabel {
+  font-size: 0.9rem;           /* büyüdü */
+  color: var(--text-1);
+}
+.metricValue {
+  font-size: 1.3rem;           /* küçüldü (1.6 → 1.3) */
+  font-weight: 600;
+}
+
+/* ---------- API-key badge ---------- */
+.keyBadge {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .6rem 1rem;
+  font: .95rem/1 'Roboto Mono', monospace;
+  background: var(--bg-1);
+  border: 1px solid transparent;                 /* gradient border hack */
+  border-radius: 14px;
+  position: relative;
+}
+
+.keyBadge::before {         /* gradient stroke */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 1px;             /* stroke thickness */
+  background: linear-gradient(135deg, var(--accent-0), var(--accent-1));
+  -webkit-mask:
+     linear-gradient(#000 0 0) content-box,
+     linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+    pointer-events: none;
+}
+
+.keyLabel {                 /* “API Key” */
+  font-size: .75rem;
+  color: var(--text-1);
+  letter-spacing: .04em;
+}
+
+.keyText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 260px;         /* uzun anahtarları kısalt */
+  user-select: all;
+}
+
+.keyBadge button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--accent-1);
+  transition: transform .12s;
+}
+.keyBadge button:hover { transform: scale(1.25); }
+
+/* CTA */
+.primary{background:linear-gradient(135deg,var(--accent-0),var(--accent-1));
+         color:#fff;border:0;border-radius:.9rem;padding:.65rem 1.4rem;font-size:.9rem;
+         font-weight:500;cursor:pointer;transition:transform .14s,box-shadow .14s;}
+.primary:hover{transform:translateY(-2px);
+               box-shadow:0 6px 16px rgba(58,108,255,.35);}
+
+/* ---------- Table ---------- */
+.tableWrapper{background:var(--bg-1);backdrop-filter:blur(var(--glass-blur));
+              border:1px solid var(--stroke);border-radius:1rem;overflow:hidden;
+              box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.table{width:100%;border-collapse:collapse;font-size:.9rem;}
+.table th,.table td{padding:.9rem 1.2rem;white-space:nowrap;}
+.table thead{background:rgba(255,255,255,.04);}
+.table thead th{font-weight:600;text-align:left;border-bottom:1px solid var(--stroke);}
+.table tbody tr:nth-child(even){background:rgba(255,255,255,.02);}
+.table tbody tr:hover{background:rgba(58,108,255,.08);}
+
+/* delete button */
+.del{background:none;border:none;cursor:pointer;color:var(--danger);font-size:1.2rem;
+     opacity:.75;transition:opacity .12s,transform .12s;}
+.del:hover{opacity:1;transform:scale(1.2);}
+
+/* ---------- Empty state ---------- */
+.empty{text-align:center;opacity:.7;}
+
+/* ---------- Modal & backdrop (kısaltılmış) ---------- */
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);
+          backdrop-filter:blur(3px);display:grid;place-items:center;z-index:50;}
+.modal{background:var(--bg-1);border:1px solid var(--stroke);border-radius:1.1rem;
+       padding:2rem;width:min(92%,480px);box-shadow:0 8px 32px rgba(0,0,0,.45);}
+
+/* ---------- Responsive ---------- */
+@media(max-width:720px){
+  .wrapper{flex-direction:column;padding:3rem 1.2rem;}
+  .header{flex-direction:column;align-items:flex-start;}
+  .sidebar{flex-direction:row;overflow-x:auto;}
+  .metricBox{min-width:140px;}
+  .table{font-size:.8rem;}
+}
+
+/* ---------- Modal Styles (revamped) ---------- */
+.modal {
+  background: var(--bg-0);
+  border: 1px solid var(--stroke);
+  border-radius: 1rem;
+  width: min(90%, 500px);
+  padding: 2rem 2.2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.modalTitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* 2-column grid */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.25rem;          /* row 1rem, col 1.25rem */
+}
+
+.full {
+  grid-column: 1 / -1;        /* element 2 sütunu da kaplar */
+}
+
+.formGrid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--text-1);
+}
+
+.formGrid input,
+.formGrid select {
+  background: var(--bg-1);
+  border: 1px solid var(--stroke);
+  border-radius: 6px;
+  padding: 0.55rem 0.8rem;
+  color: var(--text-0);
+  font-size: 0.9rem;
+}
+
+.formGrid select {
+  appearance: none;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Primary button zaten var */
+/* Cancel */
+.cancel {
+  background: none;
+  border: 1px solid var(--accent-0);
+  color: var(--accent-0);
+  border-radius: 0.6rem;
+  padding: 0.5rem 1.15rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cancel:hover {
+  background: rgba(58, 108, 255, 0.12);
+}
+
+/* Mobile stack */
+@media (max-width: 540px) {
+  .formGrid {
+    grid-template-columns: 1fr;   /* tek sütun */
+  }
+}
+
+/* ---------- Confirm Delete Dialog ---------- */
+.confirmBox {
+  background: var(--bg-0);
+  border: 1px solid var(--stroke);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  width: min(90%, 360px);
+  text-align: center;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.55);
+}
+
+.confirmBox p {
+  margin: 0 0 1.2rem 0;
+  font-size: 0.95rem;
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.danger {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+
+.danger:hover {
+  transform: translateY(-1px);
+}
+
+/* ---------- Header layout ---------- */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* title block */
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;                 /* it pushes key badge to the right */
+}
+
+.projectName {
+  font-size: 1.9rem;       /* küçültüldü */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--text-1);
+  letter-spacing: 0.05em;
+}
+
+/* key badge tweaks */
+.keyBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  font: 0.9rem/1 'Roboto Mono', monospace;
+  background: var(--bg-1);
+  border: 1px solid var(--accent-0);
+  border-radius: 12px;
+  backdrop-filter: blur(var(--glass-blur));
+  max-width: 360px;
+  overflow-x: auto;
+}
+
+.keyLabel {
+  font-size: 0.7rem;
+  color: var(--text-1);
+  text-transform: uppercase;
+}
+
+.keyText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: all;
+}
+
+/* copy icon */
+.keyBadge button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--accent-1);
+  transition: transform 0.12s;
+}
+.keyBadge button:hover { transform: scale(1.2); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .keyBadge { max-width: 100%; }
+}
+
+.copyBtn svg {
+  display: block;          /* hizalama */
+}
+
+/* --------------------------------------------------
+   Uniform icon buttons  ▸ aynı kutu, tam ortalama
+   --------------------------------------------------*/
+.edit,
+.del {
+  display: inline-flex;          /* ikonları kutuya yerleştir */
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;                   /* kare kutu */
+  height: 22px;
+  line-height: 0;                /* metin yüksekliği etkisiz */
+
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;             /* × karakteri boyutu */
+  transition: transform .12s, opacity .12s;
+}
+
+.edit { color: var(--accent-1); }
+.del  { color: var(--danger);    }
+
+.edit:hover,
+.del:hover { transform: scale(1.2); opacity: 1; }
+.edit:disabled,
+.del:disabled { opacity: .5; cursor: default; }
+
+
+/* Tablo eylem hücresi – ikonlar ortada, aralarında boşluk */
+.table td:last-child{
+  display:flex;
+  justify-content:center;   /*  🔄   sola yapışmasın  */
+  align-items:center;
+  gap: 1rem;                /*  ikonlar arası mesafe  */
+  min-width:90px;           /*  kolona sabit genişlik  */
+}
+/* 2️⃣ (isteğe bağlı) ikonu biraz küçültelim  ----------------------------*/
+.edit,
+.del {
+  font-size: 1.25rem;             /* önce 1.1-1.2 rem’di ⇒ daha zarif */
+}

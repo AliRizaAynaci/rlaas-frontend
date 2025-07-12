@@ -1,8 +1,22 @@
+/* =====================================================
+   Global CSS — RLaaS
+   ===================================================== */
+
+/* ---------- CSS Variables ---------- */
 :root {
+  /* layout */
+  --nav-h: 60px;               /* sabit navbar yüksekliği              */
+
+  /* palette (light default) */
   --background: #ffffff;
   --foreground: #171717;
+
+  /* brand accent (mavi gradyan uçları) */
+  --accent-0: #3a6cff;
+  --accent-1: #4e8dff;
 }
 
+/* dark-mode değişkenleri */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -10,24 +24,11 @@
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+/* ---------- Base reset ---------- */
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 a {
@@ -35,8 +36,37 @@ a {
   text-decoration: none;
 }
 
+/* ---------- Document ---------- */
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Anchor jump’lardaki “yukarı kayma”yı engelle */
+html {
+  /* smooth-scroll davranışı için üst boşluk */
+  scroll-padding-top: var(--nav-h);
+}
+
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+  html { color-scheme: dark; }
+}
+
+/* ---------- Body ---------- */
+body {
+  /* tema renkleri */
+  color: var(--foreground);
+  background: var(--background);
+
+  /* tipografi */
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* sabit navbar kadar üst boşluk */
+  padding-top: var(--nav-h);
+
+  /* arka plan “gece” rengi (override) */
+  background-color: #0A0F1A;
 }

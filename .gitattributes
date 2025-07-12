@@ -1,0 +1,8 @@
+# Ignore build outputs and large asset folders from stats
+public/** linguist-vendored
+styles/** linguist-vendored
+**/*.css linguist-vendored
+**/*.module.css linguist-vendored
+.next linguist-vendored
+out linguist-vendored
+node_modules linguist-vendored
