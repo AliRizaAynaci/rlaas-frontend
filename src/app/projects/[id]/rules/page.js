@@ -17,6 +17,9 @@ const KEY_BY = [
   { label: 'IP Address', value: 'ip'      },
 ];
 
+const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+
 /* ---------- component ---------- */
 export default function RulesPage() {
   const { id: projectId } = useParams();
@@ -46,7 +49,7 @@ export default function RulesPage() {
 
   /* ---------- fetch project ---------- */
   useEffect(() => {
-    fetch('http://localhost:8080/projects', { credentials: 'include' })
+    fetch(`${API}/projects`, { credentials: 'include' })
       .then(r => (r.ok ? r.json() : []))
       .then(list => {
         const p = list.find(pr => String(pr.id) === String(projectId));
@@ -59,7 +62,7 @@ export default function RulesPage() {
   /* ---------- fetch rules ---------- */
   useEffect(() => {
     if (!project) return;
-    fetch(`http://localhost:8080/projects/${projectId}/rules`, {
+    fetch(`${API}/projects/${projectId}/rules`, {
       credentials: 'include',
     })
       .then(r => (r.ok ? r.json() : []))
@@ -96,8 +99,8 @@ export default function RulesPage() {
     };
 
     const url    = editId
-      ? `http://localhost:8080/projects/${projectId}/rules/${editId}`
-      : `http://localhost:8080/projects/${projectId}/rules`;
+      ? `${API}/projects/${projectId}/rules/${editId}`
+      : `${API}/projects/${projectId}/rules`;
     const method = editId ? 'PUT' : 'POST';
 
     const res = await fetch(url, {
@@ -122,7 +125,7 @@ export default function RulesPage() {
   };
 
   const deleteRule = async (id) => {
-    await fetch(`http://localhost:8080/projects/${projectId}/rules/${id}`, {
+    await fetch(`${API}/projects/${projectId}/rules/${id}`, {
       method: 'DELETE',
       credentials: 'include',
     });

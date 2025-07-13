@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import styles from './page.module.css';
 
+const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+
 export default function DashboardPage() {
   const { isLoggedIn } = useAuth();
   const router         = useRouter();
@@ -22,7 +25,7 @@ export default function DashboardPage() {
     if (!projName.trim()) return;
     setSaving(true);
 
-    const res = await fetch('http://localhost:8080/projects', {
+    const res = await fetch(`${API}/projects`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -41,7 +44,7 @@ export default function DashboardPage() {
   /* ---------- delete project ---------- */
   const deleteProject = async (id) => {
     setDeletingId(id);
-    await fetch(`http://localhost:8080/projects/${id}`, {
+    await fetch(`${API}/projects/${id}`, {
       method: 'DELETE',
       credentials: 'include',
     });
@@ -57,7 +60,7 @@ export default function DashboardPage() {
   /* ---------- fetch projects ---------- */
   useEffect(() => {
     if (!isLoggedIn) return;
-    fetch('http://localhost:8080/projects', { credentials: 'include' })
+    fetch(`${API}/projects`, { credentials: 'include' })
       .then(r => (r.ok ? r.json() : []))
       .then(setProjects)
       .catch(() => setProjects([]));

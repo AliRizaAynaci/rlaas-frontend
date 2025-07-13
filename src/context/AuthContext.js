@@ -4,6 +4,8 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
+const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);        // ✨ avatar & e-posta buraya
@@ -12,7 +14,7 @@ export function AuthProvider({ children }) {
 
   // İlk yüklemede oturumu kontrol et
   useEffect(() => {
-    fetch('http://localhost:8080/me', { credentials: 'include' })
+    fetch(`${API}/me`, { credentials: 'include' })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data) {
@@ -27,7 +29,7 @@ export function AuthProvider({ children }) {
 
   // Logout fonksiyonu – AvatarMenu çağıracak
   const logout = async () => {
-    await fetch('http://localhost:8080/logout', {
+    await fetch(`${API}/logout`, {
       method: 'GET',
       credentials: 'include',
     });
