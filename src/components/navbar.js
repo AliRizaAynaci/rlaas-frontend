@@ -7,6 +7,8 @@ import { useAuth } from '@/context/AuthContext';
 import AvatarMenu from '@/components/AvatarMenu';   // 👈 yeni
 import styles from './navbar.module.css';
 
+const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_BASE_URL
+
 export default function Navbar() {
   const { isLoggedIn } = useAuth();
   const router = useRouter();
@@ -22,7 +24,7 @@ export default function Navbar() {
 
         {/* -------- Sağ -------- */}
         <div className={styles.right}>
-          <Link href="/docs" className={styles.link}>
+          <Link href={DOCS_URL} className={styles.link}>
             Docs
           </Link>
 
@@ -35,7 +37,7 @@ export default function Navbar() {
             </>
           ) : (
             <button
-              onClick={() => router.push('/docs#get-started')}
+              onClick={() => (window.location.href = `${DOCS_URL}/docs/intro`)}
               className={styles.primaryButton}
             >
               Get Started

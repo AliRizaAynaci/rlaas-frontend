@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 
 const AuthContext = createContext();
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
+console.log(">> API base is:", API);
 
 
 export function AuthProvider({ children }) {
