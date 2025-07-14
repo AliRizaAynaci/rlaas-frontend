@@ -45,6 +45,8 @@ const heroLines = [
   'Stay in control, scale effortlessly, and integrate with any stack in minutes.',
 ];
 
+const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_BASE_URL
+
 export default function Home() {
   const { isLoggedIn } = useAuth();
   const router          = useRouter();
@@ -88,10 +90,10 @@ export default function Home() {
         {/* CTA */}
         <div className={styles.cta}>
           <button
-            className={styles.primaryButton}
-            onClick={() => router.push(isLoggedIn ? '/dashboard' : '/docs')}
-          >
-            Get Started
+              onClick={() => (window.location.href = `${DOCS_URL}/docs/intro`)}
+              className={styles.primaryButton}
+            >
+              Get Started
           </button>
           <GoogleButton />
         </div>
