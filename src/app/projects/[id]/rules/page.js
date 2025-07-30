@@ -17,6 +17,11 @@ const KEY_BY = [
   { label: 'IP Address', value: 'ip'      },
 ];
 
+const FAIL_OPEN_OPTIONS = [
+  { label: 'True',  value: 'true'  },
+  { label: 'False', value: 'false' },
+];
+
 const API = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 
@@ -304,15 +309,19 @@ export default function RulesPage() {
                 />
               </label>
 
-              <label className={styles.full}>
-                <span>Fail Open</span>
-                <input
-                  type="checkbox"
+              <label>
+                <span>Fail&nbsp;Open</span>
+                <select
                   name="fail_open"
-                  checked={form.fail_open}
+                  value={form.fail_open}
                   onChange={handleChange}
-                  value={form.fail_open ? 'true' : 'false'}
-                />
+                  required
+                >
+                  <option value="">Choose…</option>
+                  {FAIL_OPEN_OPTIONS.map(o => (
+                    <option key={o.value} value={o.value}>{o.label}</option>
+                  ))}
+                </select>
               </label>
 
               <div className={`${styles.actions} ${styles.full}`}>
