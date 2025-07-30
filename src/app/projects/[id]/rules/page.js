@@ -312,7 +312,6 @@ export default function RulesPage() {
                   checked={form.fail_open}
                   onChange={handleChange}
                   value={form.fail_open ? 'true' : 'false'}
-                  className={styles.checkbox}
                 />
               </label>
 
