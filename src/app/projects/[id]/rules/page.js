@@ -196,6 +196,7 @@ export default function RulesPage() {
                     <td>{r.key_by}</td>
                     <td>{r.limit_count}</td>
                     <td>{r.window_seconds}</td>
+                    <td>{r.fail_open ? 'True' : 'False'}</td>
                     <td>
                       {/* edit */}
                       <button
