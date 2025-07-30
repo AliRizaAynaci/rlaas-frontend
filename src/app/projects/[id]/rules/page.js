@@ -185,7 +185,7 @@ export default function RulesPage() {
               <thead>
                 <tr>
                   <th>Endpoint</th><th>Strategy</th><th>Key By</th>
-                  <th>Limit</th><th>Window (s)</th><th></th>
+                  <th>Limit</th><th>Window (s)</th><th>Fail Open</th><th>Actions</th>
                 </tr>
               </thead>
               <tbody>
