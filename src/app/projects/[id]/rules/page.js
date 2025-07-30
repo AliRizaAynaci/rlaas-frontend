@@ -34,7 +34,7 @@ export default function RulesPage() {
   const [saving,    setSaving]    = useState(false);
 
   const [form, setForm] = useState({
-    endpoint: '', strategy: '', key_by: '', limit_count: '', window_seconds: '',
+    endpoint: '', strategy: '', key_by: '', limit_count: '', window_seconds: '', fail_open : false,
   });
 
   /* ---------- helpers ---------- */
@@ -96,6 +96,7 @@ export default function RulesPage() {
       key_by:   form.key_by,
       limit_count:    Number(form.limit_count),
       window_seconds: Number(form.window_seconds),
+      fail_open: form.fail_open === 'true', // convert string to boolean
     };
 
     const url    = editId
@@ -202,6 +203,7 @@ export default function RulesPage() {
                             key_by:   r.key_by,
                             limit_count: r.limit_count,
                             window_seconds: r.window_seconds,
+                            fail_open: r.fail_open,
                           });
                           setShowForm(true);
                         }}
