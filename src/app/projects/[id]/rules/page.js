@@ -304,6 +304,18 @@ export default function RulesPage() {
                 />
               </label>
 
+              <label className={styles.full}>
+                <span>Fail Open</span>
+                <input
+                  type="checkbox"
+                  name="fail_open"
+                  checked={form.fail_open}
+                  onChange={handleChange}
+                  value={form.fail_open ? 'true' : 'false'}
+                  className={styles.checkbox}
+                />
+              </label>
+
               <div className={`${styles.actions} ${styles.full}`}>
                 <button type="submit" className={styles.primary} disabled={saving}>
                   {saving ? 'Saving…' : 'Save'}
